@@ -35,17 +35,17 @@ jiafa(123,321)
 #第三方的包  （注意，后面所有自动化的课程，几乎用的都是第三方的包）
 #pip  是一个管理第三方包的工具
 #pip常用的操作命令（要在cmd中运行）
-# pip list                      #查看已安装的第三方的包
-# pip install 包名              #安装第三方的包
-# pip uninstall 包名            #卸载已安装的包
+pip list                      #查看已安装的第三方的包
+pip install 包名              #安装第三方的包
+pip uninstall 包名            #卸载已安装的包
 
 #做一个“包”：首先创建一个叫做“utils”的文件夹，然后，在里面创建一个叫“_init_.py”的文件，就创建了一个空的包（注意文件的名字是固定的）
 
 #常见的第三方的包
-# pymysql    #操作MySQL数据库的
-# selenium
-# requests
-# xlrd
+pymysql    #操作MySQL数据库的
+selenium
+requests
+xlrd
 
 #pymysql的使用
 import pymysql  #安装好pymsql后，先在“方法集”文件里导入pymsql
@@ -67,3 +67,110 @@ chaxun("show tables;")
 chaxun("select * from t_admin;")
 
 #定义一个方法的目的，就是为了能够更方便地使用某个功能，通过调用方法来使得代码更加简洁，不至于把某些代码重复地写很多遍而浪费不必要的时间
+
+
+
+def add(a,b):
+    """
+    目的：是为了计算两个值的和
+    """
+    c = a + b
+    #return 方法返回值
+    return c
+
+
+aa = add(1,2)
+print(aa)
+
+#异常处理  try&expect
+a = [10,20,30]
+
+try:
+    print(a[100])
+    print("1")
+except:
+    print("2")
+
+print("3")
+
+#类  
+"""
+面向过程：整个工具，方法都一步一步的实现出现   
+面向对象：封装成类的方式，来调用
+
+成员变量：类中的变量
+普通变量：直接写在py文件或方法里的变量
+"""
+# 新建一个类：
+class Person():
+    mingzi = "张三"       # 成员变量：类里面的变量:属性
+    shengao = 180
+    tizhong = 100
+    xingbie = "男"
+
+    #成员方法：类里面的方法
+    def pao(self):                               #self为固定用法，sele代表这个类的本身， self存在的目的是，方便方法里面调变量/方法
+        print("人可以跑")
+        print(self.xingbie)
+# 调用类：调用类，专业名词叫做实例化
+p = Person()        # Person()实例化Person类，返回类对象并且赋值给p变量  
+print(p.mingzi)     # 调用属性
+p.pao()             # 调用方法
+#print(p.pao())
+
+# 新建一个类：
+class Person():
+    # 构造方法：实例化类的时候来新建成员变量
+    def __init__(self, mz, sg, tz, xb):
+        self.mingzi = mz
+        self.shenggao = sg
+        self.tizhong = tz
+        self.xingbie = xb
+
+    # 成员方法：类里面的方法
+    # self:固定
+    def pao(self):
+        print("人可以跑")
+        print(self.xingbie)
+
+# 调用类：实例化
+p = Person("张三", 180, 100, "女")        # Person()实例化Person类，返回类对象并且赋值给p变量
+print(p.mingzi)     # 调用属性
+p.pao()             # 调用方法
+# print(p.pao())
+
+
+#类的继承：
+class BaBa():
+    money = "500W"
+    def make_money(self):
+        print("爸爸有钱，拿去花！")
+
+class ErZi(BaBa):
+    pass                # 占位符号：为了让代码不报错
+    
+
+# 子类可以继承父类的属性和方法
+ez = ErZi()
+print(ez.money)
+ez.make_money()
+
+
+
+# 重写：子类把父类的属性和方法重新实现
+class BaBa():
+    money = "500W"
+    def make_money(self):
+        print("爸爸有钱，拿去花！")
+
+class ErZi(BaBa):
+    # pass                # 占位符号：为了让代码不报错
+    money = "500E"
+    def make_money(self):
+        print("儿子终于实现了小目标！")
+
+# 子类把父类的属性和方法重新实现
+ez = ErZi()
+print(ez.money)
+ez.make_money()
+
